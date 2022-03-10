@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/plugin-syntax-jsx": "^7.16.7",
     "@popperjs/core": "^2.11.0",
     "@sweetalert/with-react": "^0.1.1",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
     "axios": "^0.24.0",
     "bootstrap": "^5.1.3",
     "cra-template": "1.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
     "rc-pagination": "^3.1.14",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -15,6 +19,7 @@
     "react-scripts": "^4.0.3",
     "react-toastify": "^8.1.0",
     "reactstrap": "^9.0.1",
+    "s.starterapptests": "^0.0.20",
     "sabio-debug": "https://github.com/sabiocode/debug",
     "sweetalert": "^2.1.2",
     "toastr": "^2.1.4",
@@ -26,7 +31,14 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "sabio": "npm install sabio -g",
-    "share": "sabio -sb"
+    "share": "sabio -sb",
+    "copy-test": "copy-test",
+    "test-intermediate": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/ReactIntermediate1.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-intermediate-two": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/ReactIntermediate2.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-form": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_assessments/React-Form-1.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-form-makeup": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_assessments/React-Form-Make-Up.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-mapping": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_assessments/React-Mapping-Part-B.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-mapping-makeup": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_assessments/React-Form-Mapping-Makeup.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
   },
   "eslintConfig": {
     "extends": [
@@ -60,5 +72,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "jest-html-reporter": "^3.4.2"
+  }
 }
