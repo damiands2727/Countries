@@ -30,3 +30,4 @@ yarn-error.log*
 /coverage
 src/__tests__/*
 /src/__tests__/*
+test-report
