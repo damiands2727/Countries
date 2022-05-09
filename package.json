@@ -19,7 +19,7 @@
     "react-scripts": "^4.0.3",
     "react-toastify": "^8.1.0",
     "reactstrap": "^9.0.1",
-    "s.starterapptests": "^0.0.30",
+    "s.starterapptests": "^0.0.31",
     "sabio-debug": "https://github.com/sabiocode/debug",
     "sweetalert": "^2.1.2",
     "toastr": "^2.1.4",
