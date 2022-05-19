@@ -7,7 +7,8 @@
     "template.html": true,
     ".github": true,
     ".vs": true,
-    ".vscode": true
+    ".vscode": true,
+    "src/__tests__": true
   },
   "editor.formatOnSave": true,
   "workbench.colorCustomizations": {
