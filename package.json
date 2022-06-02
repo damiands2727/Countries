@@ -43,7 +43,8 @@
     "compile-test-form-makeup": "react-scripts test -i src/__tests__/_assessments/React-Form-Make-Up.test.js --watchAll=false --json > src/__tests__/results.json &",
     "compile-test-mapping": "react-scripts test -i src/__tests__/_assessments/React-Mapping-Part-B.test.js --watchAll=false --json > src/__tests__/results.json &",
     "compile-test-mapping-makeup": "react-scripts test -i src/__tests__/_assessments/React-Form-Mapping-Makeup.test.js --watchAll=false --json > src/__tests__/results.json &",
-    "submit-test": "submit-test"
+    "submit-test": "submit-test",
+    "postinstall": "npm install sabio -g"
   },
   "eslintConfig": {
     "extends": [
