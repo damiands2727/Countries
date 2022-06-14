@@ -19,7 +19,7 @@
     "react-scripts": "^4.0.3",
     "react-toastify": "^8.1.0",
     "reactstrap": "^9.0.1",
-    "s.starterapptests": "^0.0.33",
+    "s.starterapptests": "^0.1.0",
     "sabio-debug": "https://github.com/sabiocode/debug",
     "sweetalert": "^2.1.2",
     "toastr": "^2.1.4",
@@ -43,8 +43,12 @@
     "compile-test-form-makeup": "react-scripts test -i src/__tests__/_assessments/React-Form-Make-Up.test.js --watchAll=false --json > src/__tests__/results.json &",
     "compile-test-mapping": "react-scripts test -i src/__tests__/_assessments/React-Mapping-Part-B.test.js --watchAll=false --json > src/__tests__/results.json &",
     "compile-test-mapping-makeup": "react-scripts test -i src/__tests__/_assessments/React-Form-Mapping-Makeup.test.js --watchAll=false --json > src/__tests__/results.json &",
-    "submit-test": "submit-test",
-    "postinstall": "npm install sabio -g"
+    "post-compile-test-form": "submit-test",
+    "post-compile-test-form-makeup": "submit-test",
+    "post-compile-test-mapping": "submit-test",
+    "post-compile-test-mapping-makeup": "submit-test",
+    "postinstall": "npm install sabio -g",
+    "set-credentials": "set-credentials"
   },
   "eslintConfig": {
     "extends": [
