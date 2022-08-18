@@ -11649,10 +11649,10 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-s.starterapptests@^0.0.20:
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/s.starterapptests/-/s.starterapptests-0.0.20.tgz#5f69e319e4bfbcca984d9dd9bd80ebf1a38d34f9"
-  integrity sha512-RjXTlmx+ZWCllVmzdbsWuZ3CJp7/N9gkgRr6SeaC6nYsVLTs/xjyc9dX+lodKQL9m5LeoJu2J3yxRPIGTga7og==
+s.starterapptests@^0.1.2:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/s.starterapptests/-/s.starterapptests-0.1.2.tgz#2a47af096f020214fceb3e417e3c646c4bf0cc40"
+  integrity sha512-bE7qUce0ZIzMja46B/Hcz2fqUJGvYFZbgnL0A7Gii3WE4I6K9cSfFv6KSARZ2fGbqZlc7CDmZWHd8POeSl52pw==
   dependencies:
     axios "^0.26.0"
     simple-git "^3.2.4"
