@@ -30,5 +30,6 @@
     "statusBarItem.remoteBackground": "#663399",
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
-  "peacock.color": "#663399"
+  "peacock.color": "#663399",
+  "npm.enableScriptExplorer": true
 }
