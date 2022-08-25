@@ -31,5 +31,6 @@
     "statusBarItem.remoteForeground": "#e7e7e7"
   },
   "peacock.color": "#663399",
-  "npm.enableScriptExplorer": true
+  "npm.enableScriptExplorer": true,
+  "npm.packageManager": "yarn"
 }
