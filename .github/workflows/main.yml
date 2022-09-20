@@ -1,41 +1,186 @@
-# This is a basic workflow to help you get started with Actions
+name: Test and Submit
 
-name: CI
-
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - "**"
+      - "!master"
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+  Run-React-Forms-Test:
+    if: "contains(github.event.head_commit.message, 'Forms v10')"
+    name: React Forms Test
+    runs-on: windows-latest
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: echo Hello, world!
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
 
-    # Runs a set of commands using the runners shell
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
-    - name: Set Up NOde
-      uses: actions/setup-node@v1.4.2
-      env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-    - name: yarn install, build
-      run: |
-        yarn install
-        yarn build
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
+
+      - name: Run/Compile Tests
+        run: yarn compile-test-form
+        continue-on-error: true
+
+      - name: Submit test
+        run: yarn submit-test ${{ github.event.pusher.name }}
+
+  Run-React-Mapping-Test:
+    if: "contains(github.event.head_commit.message, 'Mapping v12')"
+    name: React Mapping Test
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
+
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
+
+      - name: Compile Tests
+        run: yarn run compile-test-mapping
+        continue-on-error: true
+
+      - name: Submit test
+        run: yarn submit-test ${{ github.event.pusher.name }}
+
+  Run-React-Forms-Makeup-Test:
+    if: "contains(github.event.head_commit.message, 'Forms v7')"
+    name: React Forms Makeup Test
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
+
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
+
+      - name: Compile Tests
+        run: yarn compile-test-form-makeup
+        continue-on-error: true
+
+      - name: Submit test
+        run: yarn submit-test ${{ github.event.pusher.name }}
+
+  Run-React-Mapping-Makeup-Test:
+    if: "contains(github.event.head_commit.message, 'Mapping v11.2')"
+    name: React Mapping Makeup Test
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
+
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
+
+      - name: Compile Tests
+        run: yarn compile-test-mapping-makeup
+        continue-on-error: true
+
+      - name: Submit test
+        run: yarn submit-test ${{ github.event.pusher.name }}
+
+  Run-React-Practice-Test:
+    if: "contains(github.event.head_commit.message, 'Practice v2')"
+    name: React Practice Test
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
+
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
+
+      - name: Compile Tests
+        run: yarn compile-test-practice
+        continue-on-error: true
+
+      - name: Submit test
+        run: yarn submit-test ${{ github.event.pusher.name }}
+
+  Run-Build:
+    name: React Compile Test
+    runs-on: windows-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.5.0
+        with:
+          node-version: "14.x"
+
+      - name: Checkout Code
+        uses: actions/checkout@v2.3.4
+        continue-on-error: false
+
+      - name: Yarn install JS project dependencies
+        run: yarn install --prefer-offline --network-timeout 600000
+
+      - name: Yarn Build
+        run: yarn build
+        continue-on-error: true
+
+      - name: Copy Tests
+        run: yarn copy-test
