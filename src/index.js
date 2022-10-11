@@ -1,5 +1,5 @@
 import React from "react";
-import { createRoot } from "react-dom/client";
+import ReactDOM from "react-dom";
 import "./index.css";
 import "./services/serviceHelper";
 import "bootstrap/dist/css/bootstrap.css";
@@ -11,15 +11,14 @@ import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import debug from "sabio-debug";
 const _logger = debug.extend("root");
-const container = document.getElementById("root");
-const root = createRoot(container);
 
-root.render(
+ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
       <App />
     </React.StrictMode>
-  </BrowserRouter>
+  </BrowserRouter>,
+  document.getElementById("root")
 );
 
 reportWebVitals(_logger);
