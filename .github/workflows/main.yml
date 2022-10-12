@@ -63,7 +63,7 @@ jobs:
         run: yarn copy-test
 
       - name: Compile Tests
-        run: yarn run compile-test-mapping
+        run: yarn compile-test-mapping
         continue-on-error: true
 
       - name: Submit test
@@ -156,7 +156,7 @@ jobs:
         run: yarn copy-test
 
       - name: Compile Tests
-        run: yarn compile-test-practice
+        run: yarn compile-test-practice-assessment
         continue-on-error: true
 
       - name: Submit test
