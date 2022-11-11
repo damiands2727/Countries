@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Echo Information
-        run: echo github.repository
+        run: echo "github.repository $github.repository"
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
