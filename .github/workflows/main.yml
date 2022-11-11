@@ -1,4 +1,4 @@
-name: Test and Submit
+name: Run Remote React Tests
 
 on:
   push:
@@ -9,11 +9,12 @@ on:
 
 jobs:
   Test-Submit-React-Assessments:
+    if: github.repository != 'sabiocode/Starter.react-componentize'
     name: Set up environment,
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: Echo Information
-        run: echo "github.repository $github.repository"
+        run: echo "github.repository ${{ github.repository }}"
       
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
