@@ -5,12 +5,16 @@ on:
     branches:
       - "**"
       - "!master"
+  workflow_dispatch:
 
 jobs:
   Test-Submit-React-Assessments:
     name: Set up environment,
     runs-on: windows-latest
     steps:
+      - name: Echo Information
+        run: echo github.repository
+      
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
         with:
