@@ -1,11 +1,10 @@
 #repo version 2.0.1
-name: Run Remote React Tests
+name: Testing WIP
 
 on:
   push:
     branches:
       - "**"
-      - "!master"
   workflow_dispatch:
 
 jobs:
@@ -14,9 +13,6 @@ jobs:
     name: Set up environment,
     runs-on: self-hosted
     steps:
-      - name: Echo Information
-        run: echo "github.repository ${{ github.repository }}"
-      
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
         with:
@@ -26,40 +22,24 @@ jobs:
         uses: actions/checkout@v2.3.4
         continue-on-error: false
 
-      - name: Yarn install JS project dependencies
+      - name: Get Current Config
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
+        continue-on-error: true
+
+      - name: copy copy-admintests 2
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
+        continue-on-error: true
+
+      - name: Yarn install
         run: yarn install --prefer-offline --network-timeout 600000
 
-      - name: Yarn Build
-        run: yarn build
+      - name: Run Compile Tests
+        run: yarn compile-test
         continue-on-error: true
 
-      - name: Copy Tests
-        run: yarn copy-test
+      - name: Submit Tests to LISA
+        run: yarn submit-test-2
 
-      - name: Run/Compile Tests
-        run: yarn compile-test-form
-        if: "contains(github.event.head_commit.message, 'Forms v10')"
+      - name: Check Local Config c2
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js
         continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-mapping
-        if: "contains(github.event.head_commit.message, 'Mapping v12')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-form-makeup
-        if: "contains(github.event.head_commit.message, 'Forms v7')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-mapping-makeup
-        if: "contains(github.event.head_commit.message, 'Mapping v11.2')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-practice-assessment
-        if: "contains(github.event.head_commit.message, 'Practice v2')"
-        continue-on-error: true
-
-      - name: Submit test
-        run: yarn submit-test ${{ github.event.pusher.name }}
