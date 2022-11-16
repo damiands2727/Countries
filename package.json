@@ -37,7 +37,7 @@
     "test-intermediate": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_2_react_intermediate/ReactIntermediate1.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
     "test-intermediate-two": "copy-test && set CI=true &&react-scripts test -i /src/__tests__/_2_react_intermediate/ReactIntermediate2.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
     "test-new": "set CI=true && react-scripts test -i /src/__tests__/_assessments/React_Test-Blue-Penguin.test.js --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter && create-file react_test-blue-penguin || create-file react_test-blue-penguin",
-    "postinstall": "npm install sabio -g",
+    "postinstall": "npm install sabio@latest -g",
     "create-file": "create-file",
     "compile-test": "compile-test",
     "submit-test-2": "submit-test-2"
