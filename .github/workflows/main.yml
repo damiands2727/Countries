@@ -1,5 +1,5 @@
 #repo version 2.0.1
-name: Testing WIP
+name: Remote Testing for Ract 
 
 on:
   push:
@@ -13,6 +13,13 @@ jobs:
     name: Set up environment,
     runs-on: self-hosted
     steps:
+      - name: Setting Start Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 8
+          format: 'YYYY-MM-DDTHH:mm:ssZ'
+          
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
         with:
@@ -24,22 +31,24 @@ jobs:
 
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
-        continue-on-error: true
+        continue-on-error: false
 
-      - name: copy copy-admintests 2
+      - name: Copy Admintests 2
         run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
-        continue-on-error: true
+        continue-on-error: false
 
       - name: Yarn install
-        run: yarn install --prefer-offline --network-timeout 600000
-
-      - name: Run Compile Tests
-        run: yarn compile-test
-        continue-on-error: true
+        run: yarn install --frozen-lockfile --prefer-offline --network-timeout 600000
+        
+      - name: Compile Configured Tests
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
+        continue-on-error: false
 
       - name: Submit Tests to LISA
         run: yarn submit-test-2
 
-      - name: Check Local Config c2
-        run: node C:\\sabio_modules\\sabia\\bin\\index.js
-        continue-on-error: true
+      - name: Send Results to User
+        env:
+          TIME: "${{ steps.time.outputs.time }}"
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\test-report\reportindex.html" timeStart="${{ steps.time.outputs.time }}"
+        continue-on-error: false
