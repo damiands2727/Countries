@@ -1,10 +1,10 @@
-name: Run Remote React Tests
+#repo version 2.0.1
+name: Remote Testing for Ract 
 
 on:
   push:
     branches:
       - "**"
-      - "!master"
   workflow_dispatch:
 
 jobs:
@@ -13,9 +13,13 @@ jobs:
     name: Set up environment,
     runs-on: self-hosted
     steps:
-      - name: Echo Information
-        run: echo "github.repository ${{ github.repository }}"
-      
+      - name: Setting Start Time
+        id: time
+        uses: nanzm/get-time-action@v1.1
+        with:
+          timeZone: 8
+          format: 'YYYY-MM-DDTHH:mm:ssZ'
+          
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
         with:
@@ -25,40 +29,26 @@ jobs:
         uses: actions/checkout@v2.3.4
         continue-on-error: false
 
-      - name: Yarn install JS project dependencies
-        run: yarn install --prefer-offline --network-timeout 600000
+      - name: Get Current Config
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
+        continue-on-error: false
 
-      - name: Yarn Build
-        run: yarn build
-        continue-on-error: true
+      - name: Copy Admintests 2
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
+        continue-on-error: false
 
-      - name: Copy Tests
-        run: yarn copy-test
+      - name: Yarn install
+        run: yarn install --frozen-lockfile --prefer-offline --network-timeout 600000
+        
+      - name: Compile Configured Tests
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
+        continue-on-error: false
 
-      - name: Run/Compile Tests
-        run: yarn compile-test-form
-        if: "contains(github.event.head_commit.message, 'Forms v10')"
-        continue-on-error: true
+      - name: Submit Tests to LISA
+        run: yarn submit-test-2
 
-      - name: Compile Tests
-        run: yarn compile-test-mapping
-        if: "contains(github.event.head_commit.message, 'Mapping v12')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-form-makeup
-        if: "contains(github.event.head_commit.message, 'Forms v7')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-mapping-makeup
-        if: "contains(github.event.head_commit.message, 'Mapping v11.2')"
-        continue-on-error: true
-
-      - name: Compile Tests
-        run: yarn compile-test-practice-assessment
-        if: "contains(github.event.head_commit.message, 'Practice v2')"
-        continue-on-error: true
-
-      - name: Submit test
-        run: yarn submit-test ${{ github.event.pusher.name }}
+      - name: Send Results to User
+        env:
+          TIME: "${{ steps.time.outputs.time }}"
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\test-report\reportindex.html" timeStart="${{ steps.time.outputs.time }}"
+        continue-on-error: false
