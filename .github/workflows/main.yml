@@ -38,7 +38,7 @@ jobs:
         continue-on-error: false
 
       - name: Yarn install
-        run: yarn install --frozen-lockfile --prefer-offline --network-timeout 600000
+        run: yarn install --prefer-offline --network-timeout 600000
         
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
