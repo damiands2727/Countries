@@ -10,7 +10,7 @@ on:
 jobs:
   Test-Submit-React-Assessments:
     if: github.repository != 'sabiocode/Starter.react-componentize'
-    name: Set up environment,
+    name: Run Super Duper React Tests
     runs-on: self-hosted
     steps:
       - name: Setting Start Time
@@ -29,11 +29,24 @@ jobs:
         uses: actions/checkout@v2.3.4
         continue-on-error: false
 
-      - name: Yarn cache dir
+      - name: Show Yarn cache dir
         run: yarn cache dir
         continue-on-error: false
 
-
+      - uses: actions/checkout@v3
+      - name: SET yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir='C:\\yarn-cache'" >> $GITHUB_OUTPUT
+        
+        
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          #path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
         continue-on-error: false
@@ -43,8 +56,10 @@ jobs:
         continue-on-error: false
 
       - name: Yarn install
-        run: yarn install --cache-folder="C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Yarn\Cache\v6" --prefer-offline --network-timeout 600000
-                
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
+      # run: yarn install --cache-folder="C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Yarn\Cache\v6" --prefer-offline --network-timeout 600000
+        run: yarn install --prefer-offline --network-timeout 600000        
+        
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
         continue-on-error: false
