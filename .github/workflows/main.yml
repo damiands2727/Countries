@@ -28,25 +28,8 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2.3.4
         continue-on-error: false
-
-      - name: Show Yarn cache dir
-        run: yarn cache dir
-        continue-on-error: false
-
-      - uses: actions/checkout@v3
-      - name: SET yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "dir='C:\\yarn-cache'" >> $GITHUB_OUTPUT
         
         
-      - uses: actions/cache@v3
-        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-        with:
-          #path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-          path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
         continue-on-error: false
@@ -56,8 +39,6 @@ jobs:
         continue-on-error: false
 
       - name: Yarn install
-        if: steps.yarn-cache.outputs.cache-hit != 'true'
-      # run: yarn install --cache-folder="C:\Windows\ServiceProfiles\NetworkService\AppData\Local\Yarn\Cache\v6" --prefer-offline --network-timeout 600000
         run: yarn install --prefer-offline --network-timeout 600000        
         
       - name: Compile Configured Tests
