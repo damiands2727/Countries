@@ -45,9 +45,9 @@ jobs:
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
         continue-on-error: false
 
-#       - name: Submit Tests to LISA
-#         run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\"
-#         continue-on-error: false
+      - name: Submit Tests to LISA
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\"
+        continue-on-error: false
         
 #       - name: Send Results to User
 #         env:
