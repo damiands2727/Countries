@@ -2,9 +2,9 @@
 name: Remote Testing for Ract 
 
 on:
-  push:
-    branches:
-      - "**"
+#   push:
+#     branches:
+#       - "**"
   workflow_dispatch:
 
 jobs:
