@@ -6645,6 +6645,15 @@ form-data@^3.0.0:
     combined-stream "^1.0.8"
     mime-types "^2.1.12"
 
+form-data@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-4.0.0.tgz#93919daeaf361ee529584b9b31664dc12c9fa452"
+  integrity sha512-ETEklSGi5t0QMZuiXoA/Q6vcnxcLQP5vdugSpuAyi6SVGi2clPPp+xgEhuMaHC+zGgn31Kd235W35f7Hykkaww==
+  dependencies:
+    asynckit "^0.4.0"
+    combined-stream "^1.0.8"
+    mime-types "^2.1.12"
+
 forwarded@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.2.tgz#98c23dab1175657b8c0573e8ceccd91b0ff18c84"
@@ -11649,12 +11658,13 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-s.starterapptests@^0.1.31:
-  version "0.1.31"
-  resolved "https://registry.yarnpkg.com/s.starterapptests/-/s.starterapptests-0.1.31.tgz#70188c8862fd8be955c979b9975167cc4cd320f7"
-  integrity sha512-2iWx0pJymYb0fyWdSuqBNC32FAzh7Wp+BpkutS3xVbvZuHMSJPI/ptVjp6lIwZoZDdmhlPqmuf/3jMoGXyfQjw==
+s.starterapptests@^0.2.0:
+  version "0.2.21"
+  resolved "https://registry.yarnpkg.com/s.starterapptests/-/s.starterapptests-0.2.21.tgz#e9d027e6e935cbb618095702098dae72664ed659"
+  integrity sha512-t0Bgh+lXiccpu+1d3mmLC3V46br6CBJFpbfQad3PuOirp877rdoD8WCUapMEfCraqyOuh5YJZcW8mmPTf/eyNA==
   dependencies:
     axios "^0.26.0"
+    form-data "^4.0.0"
     simple-git "^3.2.4"
 
 "sabio-debug@https://github.com/sabiocode/debug":
