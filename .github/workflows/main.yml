@@ -9,7 +9,7 @@ on:
 
 jobs:
   Test-Submit-React-Assessments:
-    if: github.repository != 'sabiocode/Starter.react-componentize'
+    #if: github.repository != 'sabiocode/Starter.react-componentize'
     name: Run Super Duper React Tests
     runs-on: self-hosted
     steps:
