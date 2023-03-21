@@ -43,11 +43,6 @@ jobs:
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
         continue-on-error: false
-        
-      - name: Send Created Branch To Lisa
-        needs: [Compile Configured Tests]
-        run: echo '${{ toJSON(github) }}'
-        continue-on-error: false
 
 #       - name: Submit Tests to LISA
 #         run: yarn submit-test-2
@@ -57,3 +52,17 @@ jobs:
           TIME: "${{ steps.time.outputs.time }}"
         run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\test-report\reportindex.html" timeStart="${{ steps.time.outputs.time }}"
         continue-on-error: false
+
+  Send-Branch-To-Lisa:
+    runs-on: ubuntu-latest
+    needs: Test-Submit-React-Assessments
+    steps:
+      - name: Check if Test-Submit-React-Assessments succeeded
+        run: |
+          if success()
+          then
+            echo "Test-Submit-React-Assessments succeeded"
+          else
+            echo "Test-Submit-React-Assessments failed"
+            exit 1
+          fi
