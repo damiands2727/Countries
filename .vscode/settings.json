@@ -9,7 +9,6 @@
     ".vs": true,
     ".vscode": true,
     "src/__tests__": true,
-    "src/__tests__/tmp": true
   },
   "editor.formatOnSave": true,
   "workbench.colorCustomizations": {
