@@ -1,9 +1,4 @@
 /*
-Do not modify unless working on React Mapping Assessment.
+Do not modify unless working on React Forms Assessment.
 */
-
-function SingleCar() {
-	return <div className="container">Hello World</div>;
-}
-
-export default SingleCar;
+console.log("DELETE THIS LINE");
