@@ -58,7 +58,7 @@ jobs:
     needs: Test-Submit-React-Assessments
     steps:
       - name: Check if Test-Submit-React-Assessments succeeded
-        if: needs.Test-Submit-React-Assessments.result = 'success'
+        if: needs.Test-Submit-React-Assessments.result == 'success'
         run: |
             echo "Test-Submit-React-Assessments succeeded"
             echo '${{ toJSON(github) }}' 
