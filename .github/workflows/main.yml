@@ -37,8 +37,8 @@ jobs:
         run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
         continue-on-error: false
 
-      - name: Yarn install
-        run: yarn install --prefer-offline --network-timeout 600000
+      # - name: Yarn install
+      #   run: yarn install --prefer-offline --network-timeout 600000
         
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
@@ -52,3 +52,14 @@ jobs:
           TIME: "${{ steps.time.outputs.time }}"
         run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\test-report\reportindex.html" timeStart="${{ steps.time.outputs.time }}"
         continue-on-error: false
+
+  Send-Branch-To-Lisa:
+    runs-on: ubuntu-latest
+    needs: Test-Submit-React-Assessments
+    steps:
+      - name: Check if Test-Submit-React-Assessments succeeded
+        if: needs.Test-Submit-React-Assessments.result == 'success'
+        run: |
+            echo "Test-Submit-React-Assessments succeeded"
+            echo '${{ toJSON(github) }}' 
+            echo '${{github.ref_name}}' 
