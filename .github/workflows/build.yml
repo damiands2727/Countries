@@ -35,9 +35,7 @@ jobs:
       uses: actions/setup-node@v3
       env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
-
-    - name: Yarn install JS project dependencies
-      run: yarn install --prefer-offline --network-timeout 600000
-
-    - name: Yarn Build
-      run: yarn build
+    - name: yarn install, build
+      run: |
+        yarn install --prefer-offline --network-timeout 600000
+        yarn build
