@@ -31,7 +31,7 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-    - name: Set Up Node
+    - name: Set Up NOde
       uses: actions/setup-node@v3
       env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
