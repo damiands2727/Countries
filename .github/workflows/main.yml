@@ -43,6 +43,11 @@ jobs:
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
         continue-on-error: false
+        
+      - name: Send Created Branch To Lisa
+        needs: [Compile Configured Tests]
+        run: echo '${{ toJSON(github) }}'
+        continue-on-error: false
 
 #       - name: Submit Tests to LISA
 #         run: yarn submit-test-2
