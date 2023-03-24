@@ -9,7 +9,7 @@ on:
 
 jobs:
   Test-Submit-React-Assessments:
-    #if: github.repository != 'sabiocode/Starter.react-componentize'
+    if: github.repository != 'sabiocode/Starter.react-componentize'
     name: Run Super Duper React Tests
     runs-on: self-hosted
     steps:
@@ -46,17 +46,6 @@ jobs:
       - name: Submit Tests to LISA
         run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\"
         continue-on-error: false
-        
-  Send-Branch-To-Lisa:
-    runs-on: ubuntu-latest
-    needs: Test-Submit-React-Assessments
-    steps:
-      - name: Check if Test-Submit-React-Assessments succeeded
-        if: needs.Test-Submit-React-Assessments.result == 'success'
-        run: |
-            echo "Test-Submit-React-Assessments succeeded"
-            echo '${{ toJSON(github) }}' 
-            echo '${{github.ref_name}}' 
             
 #       - name: Send Results to User
 #         env:
