@@ -1,5 +1,5 @@
 #repo version 2.0.1
-name: Remote Testing for Ract 
+name: Remote Testing for Ract
 
 on:
   # push:
@@ -18,8 +18,8 @@ jobs:
         uses: nanzm/get-time-action@v1.1
         with:
           timeZone: 8
-          format: 'YYYY-MM-DDTHH:mm:ssZ'
-          
+          format: "YYYY-MM-DDTHH:mm:ssZ"
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.5.0
         with:
@@ -28,16 +28,16 @@ jobs:
         uses: actions/checkout@v2.3.4
         continue-on-error: false
 
-
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
         continue-on-error: false
+
       - name: Copy Admintests 2
         run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
         continue-on-error: false
 
-      - name: Yarn install
-        run: yarn install --prefer-offline --network-timeout 600000        
+      # - name: Yarn install
+      #   run: yarn install --prefer-offline --network-timeout 600000
 
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
@@ -46,7 +46,6 @@ jobs:
       - name: Submit Tests to LISA
         run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\"
         continue-on-error: false
-            
 #       - name: Send Results to User
 #         env:
 #           TIME: "${{ steps.time.outputs.time }}"
