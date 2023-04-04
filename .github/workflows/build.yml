@@ -31,10 +31,11 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
-    - name: Set Up NOde
-      uses: actions/setup-node@v3
-      env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
+    - name: Setup Node.Js Enviornment
+      uses: actions/setup-node@v2.5.0
+      with:
+        node-version: "14.x"
+        continue-on-error: false
     - name: yarn install, build
       run: |
         yarn install
