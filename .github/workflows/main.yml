@@ -52,3 +52,16 @@ jobs:
           TIME: "${{ steps.time.outputs.time }}"
         run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\" branchName="${{github.base_ref}} projectName="${{github.workspace}}" gitHubUserName="${{github.actor}}"
         continue-on-error: false
+
+  Send-Branch-To-Lisa:
+    runs-on: ubuntu-latest
+    needs: Test-Submit-React-Assessments
+    steps:
+      - name: Check if Test-Submit-React-Assessments succeeded
+        if: needs.Test-Submit-React-Assessments.result == 'success'
+        run: |
+            echo "Test-Submit-React-Assessments succeeded"
+            echo '${{ toJSON(github) }}' 
+            echo '${{github.ref_name}}'
+            echo `${{github.base_ref}}'
+            echo `${{github.actor}}`
