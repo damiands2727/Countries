@@ -52,4 +52,3 @@ jobs:
           TIME: "${{ steps.time.outputs.time }}"
         run: node C:\\sabio_modules\\sabia\\bin\\index.js  send-results source="${{github.workspace}}\test-report\reportindex.html" timeStart="${{ steps.time.outputs.time }}"
         continue-on-error: false
-
