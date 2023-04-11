@@ -60,3 +60,4 @@ jobs:
             echo 'Ref name: ${{github.ref_name}}'
             echo 'Project name: ${{github.repository}}'
             echo 'Actor name: ${{github.actor}}'
+            echo 'GitHub obj: ${{ toJson(github) }}'
