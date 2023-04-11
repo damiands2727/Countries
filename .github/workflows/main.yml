@@ -9,7 +9,6 @@ on:
 
 jobs:
   Test-Submit-React-Assessments:
-    if: github.repository != 'sabiocode/Starter.react-componentize'
     name: Run Super Duper React Tests
     runs-on: self-hosted
     steps:
@@ -30,10 +29,12 @@ jobs:
 
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
+        if: github.repository != 'sabiocode/Starter.react-componentize'    
         continue-on-error: false
 
       - name: Copy Admintests 2
-        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"        
+        if: github.repository != 'sabiocode/Starter.react-componentize'         
         continue-on-error: false
 
       # - name: Yarn install
@@ -41,6 +42,7 @@ jobs:
 
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
+        if: github.repository != 'sabiocode/Starter.react-componentize'            
         continue-on-error: false
 
       - name: Submit Tests to LISA
