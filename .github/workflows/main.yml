@@ -46,7 +46,7 @@ jobs:
         continue-on-error: false
 
       - name: Submit Tests to LISA
-        run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\" branchName="${{github.ref_name}}" projectName="${{github.repository}}"  gitHubUserName="${{github.actor}}"
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js send-lisa source="${{github.workspace}}\" branchName="${{github.ref_name}}" projectName="${{github.repository}}"  gitHubUserName="${{github.event.head_commit.author.name}}"
         continue-on-error: false
 
   Send-Branch-To-Lisa:
