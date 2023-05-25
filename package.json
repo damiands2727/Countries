@@ -46,7 +46,7 @@
     "create-file": "create-file",
     "compile-test": "compile-test",
     "submit-test-2": "submit-test-2",
-    "test-starter-1": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/setting-up-react-app/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
+    "test-starter-1": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/01-setting-up-react-app/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
   },
   "eslintConfig": {
     "extends": [

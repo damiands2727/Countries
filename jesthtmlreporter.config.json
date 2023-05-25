@@ -4,5 +4,6 @@
   "includeFailureMsg": true,
   "includeStackTrace": false,
   "includeSuiteFailure": false,
-  "logo": "https://sabio.la/images/sabio-S-2023.jpg"
+  "logo": "https://sabio.la/images/sabio-S-2023.jpg",
+  "sort": "titleAsc"
 }
