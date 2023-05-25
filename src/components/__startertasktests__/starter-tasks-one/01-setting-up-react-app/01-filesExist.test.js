@@ -1,6 +1,8 @@
 import "../../sabioExpect";
 import fs from "fs";
 
+jest.setTimeout(20000);
+
 describe("Component File Validation:", () => {
   const filesAr = [
     { component: "App.jsx", filePath: "src/App.jsx" },

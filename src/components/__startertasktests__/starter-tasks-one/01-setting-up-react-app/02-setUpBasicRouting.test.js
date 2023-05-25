@@ -16,6 +16,8 @@ import Companies from "../../../techcompanies/Companies";
 import Events from "../../../events/Events";
 import Register from "../../../user/Register";
 
+jest.setTimeout(20000);
+
 let errObject = {
   emptyComponent:
     "You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.",

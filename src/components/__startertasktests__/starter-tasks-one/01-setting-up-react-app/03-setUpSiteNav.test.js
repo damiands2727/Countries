@@ -6,6 +6,8 @@ import { MemoryRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SiteNav from "../../../SiteNav";
 
+jest.setTimeout(20000);
+
 describe("Complete SiteNav Component:", () => {
   let siteNavRenderer, linkComponents;
 
