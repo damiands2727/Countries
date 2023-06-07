@@ -2,10 +2,10 @@
 name: Remote Testing for Ract
 
 on:
-   push:
-     branches:
+  push:
+    branches:
       - "**"
-   workflow_dispatch:
+  workflow_dispatch:
 
 jobs:
   Test-Submit-React-Assessments:
@@ -23,18 +23,15 @@ jobs:
         uses: actions/setup-node@v2.5.0
         with:
           node-version: "14.x"
-#       - name: Checkout Code
-#         uses: actions/checkout@v2.3.4
-#         continue-on-error: false
 
       - name: Get Current Config
         run: node C:\\sabio_modules\\sabia\\bin\\index.js get-config
-        if: github.repository != 'sabiocode/Starter.react-componentize'    
+        if: github.repository != 'sabiocode/Starter.react-componentize'
         continue-on-error: false
 
       - name: Copy Admintests 2
-        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"        
-        if: github.repository != 'sabiocode/Starter.react-componentize'         
+        run: node C:\\sabio_modules\\sabia\\bin\\index.js copy-admintests destination="${{github.workspace}}"
+        if: github.repository != 'sabiocode/Starter.react-componentize'
         continue-on-error: false
 
       # - name: Yarn install
@@ -42,7 +39,7 @@ jobs:
 
       - name: Compile Configured Tests
         run: node C:\\sabio_modules\\sabia\\bin\\index.js compile-configured-test destination="${{github.workspace}}\"
-        if: github.repository != 'sabiocode/Starter.react-componentize'            
+        if: github.repository != 'sabiocode/Starter.react-componentize'
         continue-on-error: false
 
       - name: Submit Tests to LISA
@@ -56,9 +53,9 @@ jobs:
       - name: Check if Test-Submit-React-Assessments succeeded
         if: needs.Test-Submit-React-Assessments.result == 'success'
         run: |
-            echo "Test-Submit-React-Assessments succeeded"
-            echo 'Ref name: ${{github.ref_name}}'
-            echo 'Project name: ${{github.repository}}'
-            echo 'Actor name: ${{github.actor}}'
-            echo 'Author name from head commit: ${{github.event.head_commit.author.name}}'
-            echo 'GitHub obj: ${{ toJson(github) }}'
+          echo "Test-Submit-React-Assessments succeeded"
+          echo 'Ref name: ${{github.ref_name}}'
+          echo 'Project name: ${{github.repository}}'
+          echo 'Actor name: ${{github.actor}}'
+          echo 'Author name from head commit: ${{github.event.head_commit.author.name}}'
+          echo 'GitHub obj: ${{ toJson(github) }}'
