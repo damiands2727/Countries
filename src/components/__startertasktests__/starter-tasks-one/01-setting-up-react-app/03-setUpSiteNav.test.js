@@ -6,8 +6,6 @@ import { MemoryRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 import SiteNav from "../../../SiteNav";
 
-jest.setTimeout(20000);
-
 describe("Complete SiteNav Component:", () => {
   let siteNavRenderer, linkComponents;
 
@@ -28,6 +26,7 @@ describe("Complete SiteNav Component:", () => {
     let actualMsg, isComp, hint;
     let expectedMsg = "SiteNav.jsx should render and have no errors.";
     try {
+      // This line doesn't seem to be necessary. Leaving here for now but should be reviewed in next version
       isComp = typeof siteNavRenderer.root.type === "function";
       actualMsg = expectedMsg;
     } catch (e) {
@@ -92,7 +91,7 @@ describe("Complete SiteNav Component:", () => {
   });
 
   it("Link: Clicking the Sabio icon should route the user to the Home page.", () => {
-    let actualMsg, hint, links, isValidLink;
+    let actualMsg, hint, links;
 
     let expectedMsg = `Sabio icon url path to be: "/"`;
     try {
@@ -164,13 +163,11 @@ describe("Complete SiteNav Component:", () => {
 
   it("Links: There should be a total of 10 Links in your SiteNav component.", () => {
     let actualMsg, hint, linkCount;
-    let allLinksExist = false;
     let expectedMsg =
       "There should be a total of 10 Links in the SiteNav component that are fully operational.";
     try {
       linkCount = linkComponents.length;
       if (linkCount === 10) {
-        allLinksExist = true;
         actualMsg = expectedMsg;
       } else {
         actualMsg = `Only ${linkCount} out of 10 Links found.`;

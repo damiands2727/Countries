@@ -46,7 +46,18 @@
     "create-file": "create-file",
     "compile-test": "compile-test",
     "submit-test-2": "submit-test-2",
-    "test-starter-1": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/01-setting-up-react-app/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
+    "test-setting-up-react": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/01-setting-up-react-app/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-setting-up-app-state": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/02-setting-up-app-state/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-users-register": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/03-users-register/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-users-login": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/04-users-login/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-static-render": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/05-friends-static/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-ajax-render": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/06-friends-ajax/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-state": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/07-friends-component-state/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-conditional-render": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/08-friends-conditional/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-delete": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/09-friends-delete/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-add-edit": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/11-friends-add-edit-form/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-edit-change-url": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/12-friends-edit-change-url/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter",
+    "test-friends-edit-location": "react-scripts test -i /src/components/__startertasktests__/starter-tasks-one/13-friends-edit-location/* --env=jsdom --testResultsProcessor=./node_modules/jest-html-reporter"
   },
   "eslintConfig": {
     "extends": [

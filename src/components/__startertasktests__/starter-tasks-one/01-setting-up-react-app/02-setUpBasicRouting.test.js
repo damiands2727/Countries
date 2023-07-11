@@ -16,8 +16,6 @@ import Companies from "../../../techcompanies/Companies";
 import Events from "../../../events/Events";
 import Register from "../../../user/Register";
 
-jest.setTimeout(20000);
-
 let errObject = {
   emptyComponent:
     "You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.",
@@ -117,6 +115,7 @@ describe("Setting Up Basic Routing - Components", () => {
           <App />
         </MemoryRouter>
       );
+      // This line doesn't seem to be necessary. Leaving here for now but should be reviewed in next version
       isComp = typeof component.root.type === "function";
       actualMsg = expectedMsg;
     } catch (e) {
@@ -130,10 +129,10 @@ describe("Setting Up Basic Routing - Components", () => {
 
   appRenderedComponents.forEach(({ fileName }) => {
     it(`Rendered Components: ${fileName} is imported and rendered in App.jsx.`, () => {
-      let actualMsg, hint, component;
+      let actualMsg, hint;
       let expectedMsg = `${fileName} to be imported and rendering without errors.`;
       try {
-        component = renderer.create(
+        renderer.create(
           <MemoryRouter>
             <App />
           </MemoryRouter>
@@ -151,11 +150,11 @@ describe("Setting Up Basic Routing - Components", () => {
   });
 
   it("Components: Footer.jsx should include the <footer> element.", () => {
-    let actualMsg, hint, footerElement, container;
+    let actualMsg, hint, container;
     let expectedMsg = "<footer></footer> to be within Footer.jsx";
     try {
       container = renderer.create(<Footer />);
-      footerElement = container.root.findByType("footer");
+      container.root.findByType("footer");
       actualMsg = expectedMsg;
     } catch (e) {
       if (e.message.includes(errObject.emptyComponent)) {
@@ -170,7 +169,7 @@ describe("Setting Up Basic Routing - Components", () => {
   });
 
   it("Components: SiteNav.jsx should include the <nav> element.", () => {
-    let actualMsg, hint, navElement, container;
+    let actualMsg, hint, container;
     let expectedMsg = "<nav></nav> to be within SiteNav.jsx";
     try {
       container = renderer.create(
@@ -178,7 +177,7 @@ describe("Setting Up Basic Routing - Components", () => {
           <SiteNav />
         </MemoryRouter>
       );
-      navElement = container.root.findByType("nav");
+      container.root.findByType("nav");
       actualMsg = expectedMsg;
     } catch (e) {
       if (e.message.includes(errObject.emptyComponent)) {
@@ -193,14 +192,14 @@ describe("Setting Up Basic Routing - Components", () => {
   });
 
   it("Components: TestAndAjax.jsx should have the correct html.", async () => {
-    let actualMsg, container, includesHtml, hint;
+    let actualMsg, container, hint;
     let expectedMsg =
       " TestAndAjax.jsx should include the html from App.jsx. The parent element should be <main> with the role of main.";
     try {
       container = renderer.create(<TestAndAjax />);
-      includesHtml = container.root.findByType("main");
+      container.root.findByType("main");
       actualMsg = expectedMsg;
-    } catch (error) {
+    } catch (e) {
       if (e.message.includes(errObject.emptyComponent)) {
         actualMsg =
           "A component being imported is not exported properly. Make sure all components are exported correctly.";
@@ -213,13 +212,19 @@ describe("Setting Up Basic Routing - Components", () => {
     expect(actualMsg).sabioToBe(expectedMsg, hint);
   });
 
-  routeComponents.forEach(({ fileName, element }) => {
-    it(`Components: ${fileName} should render without errors and return an <h1> element with the component name.`, () => {
-      let actualMsg, hint, container, expectedMsg, includesH1;
+  routeComponents.forEach(async ({ fileName, element }) => {
+    it(`Components: ${fileName} should render without errors and return an <h1> element with the component name.`, async () => {
+      let actualMsg, hint, container, expectedMsg;
       expectedMsg = `${fileName} to render without errors and return an <h1> element with the component name.`;
       try {
-        container = renderer.create(element);
-        includesH1 = container.root.findByType("h1");
+        await renderer.act(() => {
+          container = renderer.create(
+            <MemoryRouter>
+              {element}
+            </MemoryRouter>
+          );
+        });
+        container.root.findByType("h1");
         actualMsg = expectedMsg;
       } catch (e) {
         if (e.message.includes(errObject.emptyComponent)) {
@@ -242,8 +247,8 @@ describe("Setting Up Basic Routing - Routes", () => {
 
   routeComponents.forEach(({ route, to, elementString, comp }) => {
     it(`Routes: App.jsx should have a route for ${route}.`, () => {
-      let component, actualMsg, currentRoute;
-      let isRoute = false;
+      let component, actualMsg;
+      let isRoute;
       let expectedMsg = `${route} route path to be set to ${to}.`;
       let hint = `HINT: The path for ${route} component should be "${to}" and the element should be ${elementString}`;
       try {
@@ -252,12 +257,12 @@ describe("Setting Up Basic Routing - Routes", () => {
             <App />
           </MemoryRouter>
         );
-        currentRoute = component.root.findByType(comp);
+        component.root.findByType(comp);
+        // This line doesn't seem to be necessary. Leaving here for now but should be reviewed in next version
         isRoute = typeof component.root.type === "function";
         actualMsg = expectedMsg;
       } catch (e) {
         actualMsg = `${route} route is not set up properly or missing.`;
-        isRoute = false;
       }
       expect(actualMsg).sabioToBe(expectedMsg, hint);
     });
