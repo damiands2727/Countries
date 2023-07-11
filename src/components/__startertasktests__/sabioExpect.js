@@ -50,6 +50,32 @@ expect.extend({
 });
 
 expect.extend({
+  sabioToMatchObjectKeysAndValues(received, expected, extraMessage) {
+    const pass = Object.keys(expected).every((key) => {
+      return received?.hasOwnProperty(key) && received[key] === expected[key];
+    });
+
+    if (pass) {
+      return {
+        message: () => `Expected ${received} not to match ${expected}`,
+        pass: true,
+      };
+    } else {
+      return {
+        message: () =>
+          `Expected objects to have the same properties.\n\nReceived these properties:\n\n\t${JSON.stringify(
+            received
+          )}\n\nExpected these properties:\n\n\t${JSON.stringify(
+            expected
+          )}\n\n${extraMessage}\n\n<stack below>\n\n`,
+
+        pass: false,
+      };
+    }
+  },
+});
+
+expect.extend({
   sabioToBeDefined(received, customMessage) {
     const pass = received !== undefined;
     customMessage = customMessage || "";

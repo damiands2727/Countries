@@ -1,8 +1,6 @@
 import "../../sabioExpect";
 import fs from "fs";
 
-jest.setTimeout(20000);
-
 describe("Component File Validation:", () => {
   const filesAr = [
     { component: "App.jsx", filePath: "src/App.jsx" },
@@ -48,20 +46,21 @@ describe("Component File Validation:", () => {
     },
   ];
 
-  filesAr.forEach(({ component, filePath }) => {
-    let actualMsg, hint, actualPath, isPath;
-    if (fs.existsSync(filePath)) {
-      actualPath = filePath;
+  filesAr.forEach(({ component, filePath }, i) => {
+    let testNumber, actualMsg, hint;
+    if (i < 9) {
+      testNumber = `0${i + 1}`;
+    } else {
+      testNumber = i + 1;
     }
+    it(`${testNumber} - ${component} should exist in the correct folder.`, () => {
+      let expectedMsg = `${component} to exist in: ${filePath}.`;
 
-    let expectedMsg = `${component} to exist in: ${filePath}`;
-    it(`${component} should exist in the correct folder`, () => {
-      try {
-        isPath = actualPath.name === component;
+      if (fs.existsSync(filePath)) {
         actualMsg = expectedMsg;
-      } catch (error) {
-        actualMsg = `${component} does not exist or is not in the correct path`;
-        hint = `HINT: Double check path syntax. Folder path: ${filePath}`;
+      } else {
+        actualMsg = `${component} does not exist, is not in the correct location, or it is spelled incorrectly.`;
+        hint = `HINT: double check path syntax. Folder path should be: ${filePath}.`;
       }
       expect(actualMsg).sabioToBe(expectedMsg, hint);
     });
