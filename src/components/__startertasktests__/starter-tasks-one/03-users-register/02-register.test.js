@@ -405,8 +405,8 @@ describe("Register component", () => {
     try {
       await renderAct(() => {
         component = renderer.create(
-          <MemoryRouter>
-            <Register />
+          <MemoryRouter initialEntries={["/register"]}>
+            <App />
           </MemoryRouter>
         );
       });
