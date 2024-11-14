@@ -3,6 +3,7 @@
 It should be as easy as cloning the branch,
 Open the terminal.
 run npm install and wait a while.
+run node server.js
 run npm start
 
 When your localhost loads on port 3000 you should already see the list
