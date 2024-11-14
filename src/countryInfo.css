@@ -1,0 +1,89 @@
+/* countryInfo.css */
+
+.country-info-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  margin: 20px auto;
+  max-width: 1200px;
+}
+
+.country-info-card__image {
+  max-width: 200px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.country-info-card__title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.country-info-card__bordering-countries {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.country-info-card__back-button {
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.country-info-card__back-button:hover {
+  background-color: #0056b3;
+}
+
+.country-info-card__chart-container {
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 30px;
+}
+
+.country-info-card__chart {
+  width: 100%;
+  height: 400px;
+}
+
+/* Styling for individual country cards in bordering countries section */
+.country-bordering-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.country-bordering-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.country-bordering-card img {
+  width: 40px;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.country-bordering-card h3 {
+  font-size: 1.2rem;
+  color: #333;
+  margin-top: 10px;
+  text-align: center;
+}
